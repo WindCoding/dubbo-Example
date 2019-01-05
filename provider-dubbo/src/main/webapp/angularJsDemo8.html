@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>angularJsDemo-内置服务$http</title>
+<script type="text/javascript" src="js/angular.min.js"></script>
+
+<script type="text/javascript">
+var app=angular.module('myApp',[]); //定义了一个叫myApp的模块
+//定义控制器
+app.controller('myController',function($scope,$http){
+	$scope.findList= function() {
+		$http.get("data.json").success(function(response){
+			$scope.list=response;
+		});
+	};//获取数组	
+
+});
+
+</script>
+</head>
+<body  ng-app="myApp" ng-controller="myController" ng-init="findList()">
+<!-- http://localhost:8081/angularJsDemo8.html -->
+<table>
+<tr>
+	<td>姓名</td>
+	<td>数学</td>
+	<td>语文</td>
+</tr>
+<tr ng-repeat="entity in list">
+	<td>{{entity.name}}</td>
+	<td>{{entity.shuxue}}</td>
+	<td>{{entity.yuwen}}</td>
+</tr>
+</table>
+
+
+
+
+</body>
+
+</html>
